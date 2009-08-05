@@ -50,8 +50,8 @@ class UrlSetElement(object):
         if 'lastmod' in args:
             try:
                 date = iso8601.parse_date(args['lastmod'])
-                self._lastmod = data
-            except iso8601.ParseError:
+                self._lastmod = date
+            except ValueError:
                 raise InvalidDate()
         else:
             self._lastmod = None
