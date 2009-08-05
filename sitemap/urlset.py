@@ -5,12 +5,8 @@ class UrlSet:
     """
     Sitemap urlset structure
 
-     
+    Lazy loading of urlsets from sitemaps.  
     """
-
-    @staticmethod
-    def from_url(url):
-        pass
 
     @staticmethod
     def from_file(file):
