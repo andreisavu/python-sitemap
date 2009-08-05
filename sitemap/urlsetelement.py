@@ -1,4 +1,6 @@
 
+from urlparse import urlparse
+
 from exceptions import *
 
 class UrlSetElement(object):
@@ -24,8 +26,18 @@ class UrlSetElement(object):
         """
         if 'loc' not in args:
             raise ValueError('loc parameter is mandatory')
-        # todo: validate url
+        if not self._is_valid_url(args['loc']):
+            raise InvalidUrl('Invalid URL: %s' % args['loc']);
         self._loc = args['loc']
+
+    def _is_valid_url(self, url):
+        """ App specific URL validation: should point to a web page """
+        parts = urlparse(url)
+        if parts.scheme not in ['http', 'https']:
+            return False
+        if parts.netloc == '':
+            return False
+        return True
 
     def _set_lastmod(self, args):
         """ 

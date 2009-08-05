@@ -29,6 +29,16 @@ class TestUrlSetElement(unittest.TestCase):
         except ValueError:
             pass
 
+    def testCreateFails_InvalidUrl(self):
+        params = {
+            'loc' : 'dummy-string'
+        }
+        try:
+            e = UrlSetElement(**params)
+            self.assertTrue(False)
+        except InvalidUrl:
+            pass
+
     def testImmutableProperties(self):
         e = UrlSetElement(**self.record)
         try:
