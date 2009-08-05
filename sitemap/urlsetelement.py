@@ -1,5 +1,5 @@
 
-from exception import *
+from exceptions import *
 
 class UrlSetElement:
 
