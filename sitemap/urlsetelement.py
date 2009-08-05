@@ -2,6 +2,7 @@
 from urlparse import urlparse
 
 from exceptions import *
+import iso8601
 
 class UrlSetElement(object):
 
@@ -47,8 +48,11 @@ class UrlSetElement(object):
         format allows you to omit the time portion, if desired, and use YYYY-MM-DD
         """
         if 'lastmod' in args:
-            # todo: validate and transform in datetime object
-            self._lastmod = args['lastmod']
+            try:
+                date = iso8601.parse_date(args['lastmod'])
+                self._lastmod = data
+            except iso8601.ParseError:
+                raise InvalidDate()
         else:
             self._lastmod = None
 
