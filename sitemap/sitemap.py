@@ -1,5 +1,7 @@
 
-class Sitemap:
+from exceptions import *
+
+class Sitemap(object):
 
     @staticmethod
     def from_file(file_path):

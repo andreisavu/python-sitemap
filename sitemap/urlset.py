@@ -1,7 +1,7 @@
 
 from exceptions import *
 
-class UrlSet:
+class UrlSet(object):
     """
     Sitemap urlset structure
 
