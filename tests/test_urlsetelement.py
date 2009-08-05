@@ -34,6 +34,6 @@ class TestUrlSetElement(unittest.TestCase):
         try:
             e.loc = 'Something'
             self.assertTrue(False)
-        except ImmutableException:
+        except AttributeError:
             pass
 

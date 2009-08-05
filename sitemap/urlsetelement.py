@@ -3,14 +3,10 @@ from exceptions import *
 
 class UrlSetElement(object):
 
-    def _immutable(self, v):
-        self._loc = 5
-        raise ImmutableException('This object is immutable.')
-
-    loc = property(lambda self:self._loc, _immutable)
-    lastmod = property(lambda self:self._lastmod, _immutable)
-    changefreq = property(lambda self:self._changefreq, _immutable)
-    priority = property(lambda self:self._priority, _immutable)
+    loc = property(lambda self:self._loc)
+    lastmod = property(lambda self:self._lastmod)
+    changefreq = property(lambda self:self._changefreq)
+    priority = property(lambda self:self._priority)
 
     def __init__(self, **kwargs):
         """ Init an urlset element. This object is immutable """
