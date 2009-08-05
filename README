@@ -1,6 +1,6 @@
 
-Sitemap Reader
---------------
+Sitemap Parser & Generator
+--------------------------
 
 Python Library for parsing & generating sitemaps
 
@@ -10,4 +10,11 @@ Requirements
 ------------
 
 python-httplib2
+
+Submodules
+----------
+pyiso8601 fork: http://github.com/andreisavu/pyiso8601/tree/master
+
+Read more about submodule management at:
+http://daniel.collectiveidea.com/blog/2008/4/9/git-submodules 
 
