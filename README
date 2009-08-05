@@ -2,7 +2,7 @@
 Sitemap Reader
 --------------
 
-Python Library for parsing sitemaps
+Python Library for parsing & generating sitemaps
 
 You can read more about sitemaps at http://www.sitemaps.org 
 
