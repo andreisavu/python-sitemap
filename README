@@ -6,3 +6,8 @@ Python Library for parsing sitemaps
 
 You can read more about sitemaps at http://www.sitemaps.org 
 
+Requirements
+------------
+
+python-httplib2
+
