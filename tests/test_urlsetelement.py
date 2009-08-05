@@ -39,6 +39,17 @@ class TestUrlSetElement(unittest.TestCase):
         except InvalidUrl:
             pass
 
+    def testCreateFails_InvalidLastMod(self):
+        params = {
+            'loc' : 'http://www.example.com/sitemap.xml',
+            'lastmod' : '2005-13-35'
+        }
+        try:
+            e = UrlSetElement(**params)
+            self.assertTrue(False)
+        except InvalidDate:
+            pass
+
     def testImmutableProperties(self):
         e = UrlSetElement(**self.record)
         try:

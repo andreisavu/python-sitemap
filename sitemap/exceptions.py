@@ -1,7 +1,12 @@
 
-class InvalidUrl(Exception):
+class InvalidUrl(ValueError):
     def __init__(self, msg='Invalid URL'):
-        Exception.__init__(self, msg)
+        ValueError.__init__(self, msg)
+
+class InvalidDate(ValueError):
+    def __init__(self, msg='Invalid datetime'):
+        ValueError.__init__(self, msg)
+
 
 
 
