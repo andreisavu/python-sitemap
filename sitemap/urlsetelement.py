@@ -33,6 +33,8 @@ class UrlSetElement(object):
 
     def _is_valid_url(self, url):
         """ App specific URL validation: should point to a web page """
+        if not url:
+            return False
         parts = urlparse(url)
         if parts.scheme not in ['http', 'https']:
             return False
@@ -85,7 +87,7 @@ class UrlSetElement(object):
         if 'priority' in args:
             try:
                 self._priority = float(args['priority'])
-            except ValueError:
+            except TypeError:
                 raise InvalidPriority('Invalid priority: %s' % args['priority'])
         else:
             self._priority = None

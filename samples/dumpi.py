@@ -4,6 +4,7 @@
 import sys
 sys.path.append('..')
 
+from lxml.etree import XMLSyntaxError
 import sitemap
 
 if __name__ == '__main__':
@@ -13,6 +14,9 @@ if __name__ == '__main__':
 
     index = sitemap.SitemapIndex.from_url(sys.argv[1])
     for set in index:
-        for url in set:
-            print url.loc
+        try:
+            for url in set:
+                print url.loc
+        except XMLSyntaxError:
+            pass
 
