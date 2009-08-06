@@ -91,4 +91,7 @@ class UrlSetElement(object):
             self._priority = None
 
 
+    def __str__(self):
+        return "Loc:%s Lastmod:%s Changefreq:%s Priority:%s" % \
+            (self.loc, str(self.lastmod), self.changefreq, str(self.priority))
 
