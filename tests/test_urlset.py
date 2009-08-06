@@ -11,6 +11,7 @@ class TestUrlSet(unittest.TestCase):
         self.base_path = os.path.dirname(os.path.abspath(__file__))
         self.small_sitemap = "%s/fixtures/sitemap.xml" % self.base_path
         self.google_sitemap = "%s/fixtures/google-sitemap.xml" % self.base_path
+        self.large_sitemap = "%s/fixtures/large-sitemap.xml" % self.base_path
 
     def checkContent(self, urlset):
         for url in urlset:
@@ -19,6 +20,10 @@ class TestUrlSet(unittest.TestCase):
        
     def testParseStandardSitemap(self):
         urlset = UrlSet.from_file(self.small_sitemap)
+        self.checkContent(urlset)
+
+    def testParseLargeSitemap(self):
+        urlset = UrlSet.from_file(self.large_sitemap)
         self.checkContent(urlset)
     
     def testParseGoogleSitemap(self):
