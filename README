@@ -9,7 +9,8 @@ You can read more about sitemaps at http://www.sitemaps.org
 Requirements
 ------------
 
-python-httplib2
+lxml - http://codespeak.net/lxml/
+    Docs: http://codespeak.net/lxml/parsing.html 
 
 Submodules
 ----------
