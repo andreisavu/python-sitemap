@@ -9,7 +9,7 @@ import sitemap
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print 'Usage: dumpi.py index_url_or_path'
+        print 'Usage: ./dump-index.py index_url_or_path'
         sys.exit(1)
 
     index = sitemap.SitemapIndex.from_url(sys.argv[1])

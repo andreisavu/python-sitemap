@@ -28,7 +28,7 @@ class UrlSet(object):
     @staticmethod
     def from_str(str, **kwargs):
         """ Create an urlset from a string """
-        return UrlSet(StringIO(str), 'string', **kwargs) 
+        return UrlSet(StringIO(str), 'string', **kwargs)
 
     source = property(lambda self:self._source)
 
