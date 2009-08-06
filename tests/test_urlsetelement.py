@@ -23,60 +23,32 @@ class TestUrlSetElement(unittest.TestCase):
             'changefreq' : 'daily',
             'priority' : '0.5'
         }
-        try:
-            e = UrlSetElement(**params)
-            self.assertTrue(False)
-        except ValueError:
-            pass
+        self.assertRaises(ValueError, UrlSetElement, **params)
 
     def testCreateFails_InvalidUrl(self):
         params = {
             'loc' : 'dummy-string'
         }
-        try:
-            e = UrlSetElement(**params)
-            self.assertTrue(False)
-        except InvalidUrl:
-            pass
+        self.assertRaises(InvalidUrl, UrlSetElement, **params)
 
     def testCreateFails_InvalidLastMod(self):
         params = {
             'loc' : 'http://www.example.com/sitemap.xml',
             'lastmod' : '2005-13-35'
         }
-        try:
-            e = UrlSetElement(**params)
-            self.assertTrue(False)
-        except InvalidDate:
-            pass
+        self.assertRaises(InvalidDate, UrlSetElement, **params)
 
     def testCreateFails_InvalidChangeFreq(self):
         params = {
             'loc' : 'http://www.example.com/sitemap.xml',
             'changefreq' : 'dummy-value'
-        } 
-        try:
-            e = UrlSetElement(**params)
-            self.assertTrue(False)
-        except InvalidChangeFreq:
-            pass
+        }
+        self.assertRaises(InvalidChangeFreq, UrlSetElement, **params)
 
     def testCreateFails_InvalidPriority(self):
         params = {
             'loc' : 'http://www.example.com/sitemap.xml',
             'priority' : 'not-a-float-number'
         }
-        try:
-            e = UrlSetElement(**params)
-            self.asserTrue(False)
-        except InvalidPriority:
-            pass
-
-    def testImmutableProperties(self):
-        e = UrlSetElement(**self.record)
-        try:
-            e.loc = 'Something'
-            self.assertTrue(False)
-        except AttributeError:
-            pass
+        self.assertRaises(InvalidPriority, UrlSetElement, **params)
 
