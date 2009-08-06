@@ -50,6 +50,17 @@ class TestUrlSetElement(unittest.TestCase):
         except InvalidDate:
             pass
 
+    def testCreateFails_InvalidChangeFreq(self):
+        params = {
+            'loc' : 'http://www.example.com/sitemap.xml',
+            'changefreq' : 'dummy-value'
+        } 
+        try:
+            e = UrlSetElement(**params)
+            self.assertTrue(False)
+        except InvalidChangeFreq:
+            pass
+
     def testImmutableProperties(self):
         e = UrlSetElement(**self.record)
         try:

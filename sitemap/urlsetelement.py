@@ -1,8 +1,8 @@
 
+import iso8601
 from urlparse import urlparse
 
 from exceptions import *
-import iso8601
 
 class UrlSetElement(object):
 
@@ -63,9 +63,18 @@ class UrlSetElement(object):
         There is only a limited set of valid values. 
         """
         if 'changefreq' in args:
+            if not self._is_valid_changefreq(args['changefreq']):
+                raise InvalidChangeFreq('Invalid changefreq: %s' % args['changefreq'])
             self._changefreq = args['changefreq']
         else:
             self._changefreq = None
+
+    def _is_valid_changefreq(self, changefreq):
+        """ Check change frequency validity """
+        valid_values = ['always', 'hourly', 'daily', 'weekly', 'monthly', 'yearly', 'never']
+        if changefreq not in valid_values:
+            return False
+        return True
 
     def _set_priority(self, args):
         """
