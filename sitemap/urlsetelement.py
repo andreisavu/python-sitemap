@@ -83,7 +83,10 @@ class UrlSetElement(object):
         The priority of urls is relative to other urls in the sitemap. 
         """
         if 'priority' in args:
-            self._priority = args['priority']
+            try:
+                self._priority = float(args['priority'])
+            except ValueError:
+                raise InvalidPriority('Invalid priority: %s' % args['priority'])
         else:
             self._priority = None
 

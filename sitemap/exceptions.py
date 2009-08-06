@@ -11,4 +11,7 @@ class InvalidChangeFreq(ValueError):
     def __init__(self, msg='Invalid change frequency'):
         ValueError.__init__(self, msg)
 
+class InvalidPriority(ValueError):
+    def __init__(self, msg='Invalid priority'):
+        ValueError.__init__(self, msg)
 

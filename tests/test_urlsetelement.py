@@ -61,6 +61,17 @@ class TestUrlSetElement(unittest.TestCase):
         except InvalidChangeFreq:
             pass
 
+    def testCreateFails_InvalidPriority(self):
+        params = {
+            'loc' : 'http://www.example.com/sitemap.xml',
+            'priority' : 'not-a-float-number'
+        }
+        try:
+            e = UrlSetElement(**params)
+            self.asserTrue(False)
+        except InvalidPriority:
+            pass
+
     def testImmutableProperties(self):
         e = UrlSetElement(**self.record)
         try:
