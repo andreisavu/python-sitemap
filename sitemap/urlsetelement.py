@@ -89,6 +89,8 @@ class UrlSetElement(object):
                 self._priority = float(args['priority'])
             except TypeError:
                 raise InvalidPriority('Invalid priority: %s' % args['priority'])
+            except ValueError:
+                raise InvalidPriority()
         else:
             self._priority = None
 
