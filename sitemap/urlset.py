@@ -10,36 +10,40 @@ from urlsetelement import *
 
 class UrlSet(object):
     """
-    Sitemap urlset structure
+    UrlSet urlset structure
 
     Lazy loading of an urlset from a sitemap.
     """
 
     @staticmethod
-    def from_url(url):
+    def from_url(url, **kwargs):
         """ Create an urlset from an url """
-        return UrlSet(urlopen(url), url)
+        return UrlSet(urlopen(url), url, **kwargs)
 
     @staticmethod
-    def from_file(file):
+    def from_file(file, **kwargs):
         """ Create an urlset from a file """
-        return UrlSet(open(file), file)
+        return UrlSet(open(file), file, **kwargs)
 
     @staticmethod
-    def from_str(str):
+    def from_str(str, **kwargs):
         """ Create an urlset from a string """
-        return UrlSet(StringIO(str), 'string') 
+        return UrlSet(StringIO(str), 'string', **kwargs) 
 
     source = property(lambda self:self._source)
 
-    def __init__(self,handle, source='handle'):
+    def __init__(self,handle, source='handle', validate=True):
         """ Create an urlset from any kinf of File like object """
         self._source = source
         self._handle = handle
+        self._validate = validate
 
     def get_urls(self):
         """ Parse the xml file and generate the elements """
-        schema = etree.XMLSchema(file=open(self.get_schema_path()))
+        if self._validate:
+            schema = etree.XMLSchema(file=open(self.get_schema_path()))
+        else:
+            schema = None
         context = etree.iterparse(self._handle, events=('start',), schema=schema)
 
         element_data = {}

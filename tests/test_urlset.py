@@ -20,6 +20,10 @@ class TestUrlSet(unittest.TestCase):
     def testParseStandardSitemap(self):
         urlset = UrlSet.from_file(self.small_sitemap)
         self.checkContent(urlset)
+    
+    def testParseGoogleSitemap(self):
+        urlset = UrlSet.from_file(self.google_sitemap, validate=False)
+        self.checkContent(urlset)
 
     def testParseStandardSitemapAsString(self):
         content = open(self.small_sitemap).read()

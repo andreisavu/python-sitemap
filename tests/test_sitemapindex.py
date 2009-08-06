@@ -2,6 +2,6 @@
 import unittest
 from sitemap import *
 
-class TestSitemap(unittest.TestCase):
+class TestSitemapIndex(unittest.TestCase):
     pass
 
