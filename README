@@ -4,7 +4,14 @@ Sitemap Parser & Generator
 
 Python Library for parsing & generating sitemaps
 
-You can read more about sitemaps at http://www.sitemaps.org 
+You can read more about sitemaps at http://www.sitemaps.org
+
+Current status
+--------------
+
+The library can be used for parsing sitemaps
+The generator part is not yet implemented
+Check the TODO file for the remaining tasks
 
 Requirements
 ------------

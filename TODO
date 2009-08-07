@@ -1,4 +1,8 @@
 
 - add more tests for error conditions on parsing
+- improve error handling for broken sitemaps
 - add parsing for gziped sitemaps
+- implement urlset preatty printing
+- implement sitemap generation 
+- add sample that generates a sitemap from a list of urls
 
