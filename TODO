@@ -1,3 +1,4 @@
 
 - add more tests for error conditions on parsing
+- add parsing for gziped sitemaps
 
