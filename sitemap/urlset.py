@@ -58,7 +58,7 @@ class UrlSet(object):
                     continue
             elif tag in ['loc', 'lastmod', 'changefreq', 'priority']:
                 element_data[tag] = elem.text
-            elem.clear()
+            # elem.clear() # if enabled parsing fails after a medium number of elements
 
     def _remove_ns(self, str):
         return re.sub('{[^}]*}', '', str)
