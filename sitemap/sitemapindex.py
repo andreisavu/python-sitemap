@@ -49,6 +49,8 @@ class SitemapIndex(object):
                     continue
             elif tag == 'loc':
                 location = elem.text
+        del context
+        del schema
 
     def _remove_ns(self, str):
         return re.sub('{[^}]*}', '', str)
