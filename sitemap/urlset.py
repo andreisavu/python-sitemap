@@ -4,6 +4,7 @@ from cStringIO import StringIO
 from urllib import urlopen
 import os
 import re
+import sys
 
 from exceptions import *
 from urlsetelement import *
@@ -88,6 +89,11 @@ class UrlSet(object):
     def get_schema_path(self):
         base = os.path.dirname(os.path.abspath(__file__))
         return os.path.join(base, 'schemas', 'sitemap.xsd')
+
+    def pprint(out=sys.stdout):
+        """ Preatty print an urlset as xml. Ready to be put online."""
+        # todo: implement this if you need it
+        pass
 
     def __iter__(self):
         return iter(self.get_urls())
