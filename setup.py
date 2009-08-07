@@ -11,5 +11,6 @@ setup(
       author='Andrei Savu',
       author_email='contact@andreisavu.ro',
       url='http://github.com/andreisavu/python-sitemap/tree/master',
-      packages=['sitemap']
+      packages=['sitemap'],
+      package_data={'sitemap' : ['schemas/*.xsd']}
 )
