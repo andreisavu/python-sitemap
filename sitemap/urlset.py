@@ -30,15 +30,36 @@ class UrlSet(object):
         """ Create an urlset from a string """
         return UrlSet(StringIO(str), 'string', **kwargs)
 
+    @staticmethod
+    def empty_container():
+        """ Create an empty urlset container. Use this for constructing a sitemap """
+        return UrlSet()
+
     source = property(lambda self:self._source)
 
-    def __init__(self,handle, source='handle', validate=True):
+    def __init__(self,handle=None, source='handle', validate=True):
         """ Create an urlset from any kinf of File like object """
         self._source = source
         self._handle = handle
         self._validate = validate
+        self._elements = []
+
+    def append(self, urlsetelement):
+        if self._handle:
+            raise Exception("You can append only to a container. " + \
+               " This urlset is binded to a handle")
+        self._elements.append(urlsetelement)
 
     def get_urls(self):
+        if not self._handle:
+            return self.get_urls_from_elements()
+        else:
+            return self.get_urls_from_handle()
+
+    def get_urls_from_elements(self):
+        return self._elements
+
+    def get_urls_from_handle(self):
         """ Parse the xml file and generate the elements """
         if self._validate:
             schema = etree.XMLSchema(file=open(self.get_schema_path()))
