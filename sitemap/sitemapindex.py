@@ -2,6 +2,7 @@
 from lxml import etree
 from urllib import urlopen
 from cStringIO import StringIO
+from gzip import GzipFile
 
 from urlset import *
 from exceptions import *
@@ -11,7 +12,10 @@ class SitemapIndex(object):
     @staticmethod
     def from_url(url, **kwargs):
         """ Create a sitemap from an url """
-        return SitemapIndex(urlopen(url), url, **kwargs)
+        u = urlopen(url)
+        if u.headers.has_key("content-type") and u.headers["content-type"].lower() == "application/x-gzip":
+            u = GzipFile(fileobj=StringIO(u.read()))
+        return SitemapIndex(u, url, **kwargs)
 
     @staticmethod
     def from_file(file, **kwargs):
@@ -36,7 +40,7 @@ class SitemapIndex(object):
             schema = etree.XMLSchema(file=open(self.get_schema_path()))
         else:
             schema = None
-        context = etree.iterparse(self._handle, events=('start',), schema=schema)
+        context = etree.iterparse(self._handle, events=('end',), schema=schema)
 
         location = ''
         for action, elem in context:

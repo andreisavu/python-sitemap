@@ -2,6 +2,7 @@
 from lxml import etree
 from cStringIO import StringIO
 from urllib import urlopen
+from gzip import GzipFile
 import os
 import re
 import sys
@@ -19,7 +20,10 @@ class UrlSet(object):
     @staticmethod
     def from_url(url, **kwargs):
         """ Create an urlset from an url """
-        return UrlSet(urlopen(url), url, **kwargs)
+        u = urlopen(url)
+        if u.headers.has_key("content-type") and u.headers["content-type"].lower() == "application/x-gzip":
+            u = GzipFile(fileobj=StringIO(u.read()))
+        return UrlSet(u, url, **kwargs)
 
     @staticmethod
     def from_file(file, **kwargs):
@@ -66,7 +70,7 @@ class UrlSet(object):
             schema = etree.XMLSchema(file=open(self.get_schema_path()))
         else:
             schema = None
-        context = etree.iterparse(self._handle, events=('start',), schema=schema)
+        context = etree.iterparse(self._handle, events=('end',), schema=schema)
 
         element_data = {}
         for action, elem in context:
