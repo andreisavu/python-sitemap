@@ -26,20 +26,20 @@ class TestUrlSet(unittest.TestCase):
        
     def testParseStandardSitemap(self):
         urlset = UrlSet.from_file(self.small_sitemap)
-        self.checkContent(urlset, 4)
+        self.checkContent(urlset, 5)
 
     def testParseLargeSitemap(self):
         urlset = UrlSet.from_file(self.large_sitemap)
-        self.checkContent(urlset, 1620)
+        self.checkContent(urlset, 1623)
     
     def testParseGoogleSitemap(self):
         urlset = UrlSet.from_file(self.google_sitemap, validate=False)
-        self.checkContent(urlset, 6)
+        self.checkContent(urlset, 7)
 
     def testParseStandardSitemapAsString(self):
         content = open(self.small_sitemap).read()
         urlset = UrlSet.from_str(content)
-        self.checkContent(urlset, 4)
+        self.checkContent(urlset, 5)
 
     def testCreateContainer(self):
         urlset = UrlSet.empty_container()
