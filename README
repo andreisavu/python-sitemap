@@ -26,3 +26,10 @@ pyiso8601 fork: http://github.com/andreisavu/pyiso8601/tree/master
 Read more about submodule management at:
 http://daniel.collectiveidea.com/blog/2008/4/9/git-submodules 
 
+License
+-------
+
+This library is released under the Apache License, Version 2.0
+
+http://www.apache.org/licenses/LICENSE-2.0.html
+
