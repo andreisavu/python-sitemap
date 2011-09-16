@@ -1,4 +1,3 @@
-
 from lxml import etree
 from cStringIO import StringIO
 from urllib import urlopen
@@ -84,6 +83,8 @@ class UrlSet(object):
                     continue
             elif tag in ['loc', 'lastmod', 'changefreq', 'priority']:
                 element_data[tag] = elem.text
+            while elem.getprevious() is not None:
+                del elem.getparent()[0]
         del context
         del schema
 
