@@ -95,10 +95,33 @@ class UrlSet(object):
         base = os.path.dirname(os.path.abspath(__file__))
         return os.path.join(base, 'schemas', 'sitemap.xsd')
 
-    def pprint(out=sys.stdout):
+    def pprint(self,out=sys.stdout):
         """ Preatty print an urlset as xml. Ready to be put online."""
         # todo: implement this if you need it
-        pass
+        if self._handle:
+            raise Exception("You can pprint only a container. " + \
+               " This urlset is binded to a handle")
+        urlset = etree.Element("urlset",xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+        for url in self._elements:
+            ue = etree.Element("url")
+            loc = etree.Element("loc")
+            lastmod = etree.Element("lastmod")
+            changefreq = etree.Element("changefreq")
+            priority = etree.Element("priority")
+            loc.text = url.loc
+            ue.append(loc)
+            if url.lastmod: 
+                lastmod.text = url.lastmod.isoformat()
+                ue.append(lastmod)
+            if url.changefreq: 
+                changefreq.text = url.changefreq
+                ue.append(changefreq)
+            if url.priority: 
+                priority.text = str(url.priority)
+                ue.append(priority)
+            urlset.append(ue)
+        out.write(etree.tostring(urlset,xml_declaration=True,pretty_print=True,encoding="UTF-8"))
+
 
     def __iter__(self):
         return iter(self.get_urls())
